@@ -17,7 +17,10 @@ Tradutor offline de japonês para português, integrando OCR e IA para jogos/vis
 
 - Python 3.11+
 - [Tesseract OCR 5.3+](https://github.com/UB-Mannheim/tesseract/wiki) com dados em japonês
-- NVIDIA GPU (recomendado) ou CPU
+- Minímo: 1GB RAM(Disponível) + CPU
+- Recomendado: 3GB RAM(Disponível) + NVIDIA GPU
+
+###### Nota: A configuração de hardware pode variar dependendo da LLM, que pode ser mudada no _translation.py_.
 
 ```bash
 # Clone o repositório
