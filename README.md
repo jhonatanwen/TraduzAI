@@ -2,7 +2,7 @@
 
 ![TraduzAI Interface](assets/ModelTraduzAI.png)
 
-Tradutor offline de japonês para português brasileiro, integrando OCR e IA para jogos/visual novels.
+Tradutor offline de japonês para português, integrando OCR e IA para jogos/visual novels.
 
 ## 🚀 Recursos
 
@@ -47,12 +47,6 @@ Tradução Manual:
 Digite/copie texto japonês na área "Original"
 
 A tradução aparecerá automaticamente após 0.5s
-
-Atalhos:
-
-Ctrl + S: Salvar tradução
-
-Ctrl + C: Copiar texto traduzido
 
 ## ⚙ Configuração
 
