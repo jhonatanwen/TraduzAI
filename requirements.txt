@@ -1,0 +1,15 @@
+# python==3.11.3
+numpy==1.26.4  # Versão compatível com OpenCV
+pytesseract==0.3.10
+pillow==10.3.0
+transformers==4.40.2
+torch==2.3.0+cu118
+torchvision==0.18.0+cu118
+torchaudio==2.3.0
+opencv-python-headless==4.9.0.80  # Versão headless para compatibilidade
+pyinstaller==6.7.0
+sacremoses==0.1.1
+huggingface_hub==0.23.3
+pywin32==306
+mss==9.0.1
+# use -> pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu118
