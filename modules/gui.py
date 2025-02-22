@@ -5,10 +5,11 @@ from PIL import Image, ImageTk
 
 
 class GUI:
-    def __init__(self, root, on_select_image, on_screenshot):
+    def __init__(self, root, on_select_image, on_screenshot, on_text_update):
         self.root = root
         self.on_select_image = on_select_image
         self.on_screenshot = on_screenshot
+        self.on_text_update = on_text_update
         self.setup_ui()
 
     def setup_ui(self):
@@ -24,7 +25,6 @@ class GUI:
         # Área da Imagem
         self.img_frame = ttk.LabelFrame(main_frame, text=" Visualização da Imagem ", width=320)
         self.img_frame.grid(row=0, column=0, rowspan=2, sticky="nswe", padx=5, pady=5)
-
         self.img_label = ttk.Label(self.img_frame)
         self.img_label.pack(fill="both", expand=True)
 
@@ -83,8 +83,21 @@ class GUI:
             bg="#F8F9FA",
             relief="flat"
         )
+
+        if "Original" in title:
+            text_widget.bind("<<Modified>>", self.handle_text_change)
+            self.original_text_widget = text_widget
+
         text_widget.pack(fill="both", expand=True)
         return text_widget
+
+    def handle_text_change(self, event):
+        if not self.original_text_widget.edit_modified():
+            return
+
+        text = self.original_text_widget.get(1.0, tk.END).strip()
+        self.root.after(500, lambda: self.on_text_update(text))
+        self.original_text_widget.edit_modified(False)
 
     def update_display(self, img_path, original, translated):
         # Atualizar imagem
@@ -94,9 +107,13 @@ class GUI:
         self.img_label.config(image=self.photo)
 
         # Atualizar textos
-        self.update_text(self.original_text, original)
+        self.update_text(self.original_text_widget, original)
         self.update_text(self.translated_text, translated)
 
     def update_text(self, text_widget, content):
         text_widget.delete(1.0, tk.END)
         text_widget.insert(tk.END, content)
+
+    def update_translation(self, translated):
+        self.translated_text.delete(1.0, tk.END)
+        self.translated_text.insert(tk.END, translated)

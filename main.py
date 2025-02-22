@@ -24,10 +24,18 @@ class TraduzAI:
         self.gui = GUI(
             self.root,
             on_select_image=self.load_image,
-            on_screenshot=self.start_snip_mode
+            on_screenshot=self.start_snip_mode,
+            on_text_update=self.handle_text_update
         )
         self.root.protocol("WM_DELETE_WINDOW", self.on_close)
         self.snip_active = False
+
+    def handle_text_update(self, text):
+        try:
+            translated = self.translator.translate(text)
+            self.gui.update_translation(translated)
+        except Exception as e:
+            print(f"Erro na tradução: {str(e)}")
 
     def load_image(self):
         file_path = filedialog.askopenfilename(
